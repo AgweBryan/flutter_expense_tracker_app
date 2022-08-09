@@ -5,6 +5,7 @@ import 'package:flutter_expense_tracker_app/controllers/home_controller.dart';
 import 'package:flutter_expense_tracker_app/controllers/theme_controller.dart';
 import 'package:flutter_expense_tracker_app/models/currency.dart';
 import 'package:flutter_expense_tracker_app/views/screens/add_transaction_screen.dart';
+import 'package:flutter_expense_tracker_app/views/screens/all_transactions_screen.dart';
 import 'package:flutter_expense_tracker_app/views/screens/chart_screen.dart';
 import 'package:flutter_expense_tracker_app/views/widgets/income_expense.dart';
 import 'package:flutter_expense_tracker_app/views/widgets/placeholder_info.dart';
@@ -144,7 +145,17 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-              PlaceholderInfo()
+              PlaceholderInfo(),
+              _homeController.myTransactions.isNotEmpty
+                  ? Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.only(bottom: 10.h),
+                      child: GestureDetector(
+                        onTap: () => Get.to(() => AllTransactionsScreen()),
+                        child: Text('Show all transactions,'),
+                      ),
+                    )
+                  : SizedBox(),
             ],
           ),
         ),
